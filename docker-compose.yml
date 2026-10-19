@@ -1,0 +1,17 @@
+services:
+  frontend:
+    image: h0lo/my-frontend:latest
+    ports:
+      - "8080:80"
+
+  api:
+    image: containous/whoami
+
+  logger:
+    image: busybox
+    command: sh -c "while true; do date >> /data/log.txt; sleep 5; done"
+    volumes:
+      - logger_data:/data
+
+volumes:
+  logger_data:
